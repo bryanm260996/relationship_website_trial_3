@@ -14,6 +14,15 @@ def home():
 def our_journey():
     return render_template('our_journey.html')
 
+@app.route('/past_trips')
+def past_trips():
+    return render_template('past_trips.html')
+
+@app.route('/bucketlist')
+def bucketlist():
+    return render_template('bucketlist.html')
+
+
 ## RUN THE APP ##
 if __name__ == '__main__':
     port = int(os.environ.get('PORT', 5000))  # Use Heroku's PORT variable
