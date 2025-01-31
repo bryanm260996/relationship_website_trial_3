@@ -67,6 +67,21 @@ def bucketlist():
 def countdowns():
     return render_template('countdowns.html')
 
+@app.route('/vision_boards')
+@login_required
+def vision_boards():
+    return render_template('vision_boards.html')
+
+@app.route('/marovision')
+@login_required
+def maro_vision_board():
+    return render_template('maro_vision_board.html')
+
+@app.route('/bryanvision')
+@login_required
+def bryan_vision_board():
+    return render_template('bryan_vision_board.html')
+
 
 ## RUN THE APP ##
 if __name__ == '__main__':
