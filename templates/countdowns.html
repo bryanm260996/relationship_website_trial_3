@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Multiple Countdown Timers</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 50px;
+        }
+        h1 {
+            font-size: 2em;
+            color: #333;
+        }
+        .event {
+            margin: 20px auto;
+            padding: 20px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            display: inline-block;
+            width: 300px;
+        }
+        .event h2 {
+            font-size: 1.5em;
+            color: #444;
+        }
+        .countdown {
+            font-size: 1.5em;
+            font-weight: bold;
+            color: #d32f2f;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Our Countdowns</h1>
+
+    <div class="event">
+        <h2>Valentine's Day!</h2>
+        <p>February 14, 2025, 12:00 AM</p>
+        <div class="countdown" id="countdown1"></div>
+    </div>
+
+    <div class="event">
+        <h2>Bryan's Birthday</h2>
+        <p>February 10, 2025</p>
+        <div class="countdown" id="countdown2"></div>
+    </div>
+
+    <div class="event">
+        <h2>Lights Festival</h2>
+        <p>April 26, 2025, 6:00 PM</p>
+        <div class="countdown" id="countdown3"></div>
+    </div>
+
+    <div class="event">
+        <h2>Maro's Birthday</h2>
+        <p>May 1, 2025</p>
+        <div class="countdown" id="countdown4"></div>
+    </div>
+
+    <div class="event">
+        <h2> Our Anniversary!</h2>
+        <p>August 18, 2025, 12:00 AM</p>
+        <div class="countdown" id="countdown5"></div>
+    </div>
+
+    <script>
+        // Event data (title, date, corresponding countdown element ID)
+        const events = [
+            { date: "February 14, 2025 23:59:59", elementId: "countdown1" },
+            { date: "February 10, 2025 23:59:59", elementId: "countdown2" },
+            { date: "April 26, 2025 18:00:00", elementId: "countdown3" },
+            { date: "May 1, 2025 23:59:59", elementId: "countdown4" },
+            { date: "August 18, 2025 23:59:59", elementId: "countdown5" }
+        ];
+
+        function updateCountdowns() {
+            const now = new Date().getTime();
+
+            events.forEach(event => {
+                const eventDate = new Date(event.date).getTime();
+                const timeLeft = eventDate - now;
+                const countdownElement = document.getElementById(event.elementId);
+
+                if (timeLeft <= 0) {
+                    countdownElement.innerHTML = "The event has started!";
+                } else {
+                    const days = Math.floor(timeLeft / (1000 * 60 * 60 * 24));
+                    const hours = Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                    const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
+                    const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
+                    countdownElement.innerHTML = `${days}d ${hours}h ${minutes}m ${seconds}s`;
+                }
+            });
+        }
+
+        // Update all countdowns every second
+        setInterval(updateCountdowns, 1000);
+
+        // Initial call to avoid 1-second delay
+        updateCountdowns();
+    </script>
+
+</body>
+</html>
